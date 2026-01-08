@@ -1,0 +1,119 @@
+{
+  "items": [
+    {
+      "id": "health_potion",
+      "name": "Poción de Salud",
+      "description": "Un líquido rojo turbio que restaura la vitalidad.",
+      "type": "consumable",
+      "effect": {
+        "type": "heal",
+        "value": 30
+      },
+      "price": 50,
+      "stackable": true,
+      "max_stack": 10
+    },
+    {
+      "id": "sanity_tonic",
+      "name": "Tónico de Cordura",
+      "description": "Una mezcla de hierbas que calma la mente perturbada.",
+      "type": "consumable",
+      "effect": {
+        "type": "restore_sanity",
+        "value": 25
+      },
+      "price": 75,
+      "stackable": true,
+      "max_stack": 5
+    },
+    {
+      "id": "rusty_sword",
+      "name": "Espada Oxidada",
+      "description": "Una vieja espada corroída por el tiempo. Aún sirve.",
+      "type": "weapon",
+      "slot": "main_hand",
+      "stats": {
+        "attack": 5
+      },
+      "price": 30
+    },
+    {
+      "id": "iron_sword",
+      "name": "Espada de Hierro",
+      "description": "Una espada sólida forjada por un herrero competente.",
+      "type": "weapon",
+      "slot": "main_hand",
+      "stats": {
+        "attack": 12
+      },
+      "price": 150
+    },
+    {
+      "id": "eldritch_dagger",
+      "name": "Daga Eldritch",
+      "description": "Una daga con símbolos que parecen moverse. Ver fijamente causa mareos.",
+      "type": "weapon",
+      "slot": "main_hand",
+      "stats": {
+        "attack": 18
+      },
+      "sanity_cost": 5,
+      "price": 500
+    },
+    {
+      "id": "leather_armor",
+      "name": "Armadura de Cuero",
+      "description": "Protección básica de cuero curtido.",
+      "type": "armor",
+      "slot": "body",
+      "stats": {
+        "defense": 3
+      },
+      "price": 80
+    },
+    {
+      "id": "cultist_robes",
+      "name": "Túnicas de Cultista",
+      "description": "Ropajes oscuros manchados con sustancias desconocidas.",
+      "type": "armor",
+      "slot": "body",
+      "stats": {
+        "defense": 2,
+        "max_sanity": -10
+      },
+      "price": 120
+    },
+    {
+      "id": "torch",
+      "name": "Antorcha",
+      "description": "Ilumina la oscuridad... parcialmente.",
+      "type": "tool",
+      "slot": "off_hand",
+      "effect": {
+        "type": "light",
+        "radius": 64
+      },
+      "price": 10,
+      "stackable": true,
+      "max_stack": 5
+    },
+    {
+      "id": "forbidden_tome",
+      "name": "Tomo Prohibido",
+      "description": "Un libro encuadernado en piel desconocida. Las páginas susurran.",
+      "type": "key_item",
+      "effect": {
+        "type": "learn_spell",
+        "spell": "eldritch_blast"
+      },
+      "sanity_cost": 15
+    },
+    {
+      "id": "silver_key",
+      "name": "Llave de Plata",
+      "description": "Una llave ornamentada con símbolos extraños.",
+      "type": "key_item",
+      "quest_item": true
+    }
+  ]
+}

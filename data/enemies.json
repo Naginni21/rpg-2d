@@ -1,0 +1,92 @@
+{
+  "enemies": [
+    {
+      "id": "cultist",
+      "name": "Cultista",
+      "description": "Un seguidor de los antiguos, su mente perdida hace tiempo.",
+      "stats": {
+        "max_health": 25,
+        "attack": 6,
+        "defense": 2,
+        "speed": 45
+      },
+      "horror_level": 1,
+      "behavior": "chase",
+      "drops": [
+        {"item_id": "cultist_robes", "chance": 0.1},
+        {"item_id": "health_potion", "chance": 0.3}
+      ],
+      "experience": 15
+    },
+    {
+      "id": "hollow_hound",
+      "name": "Sabueso Hueco",
+      "description": "Una criatura canina sin ojos, guiada por sentidos más allá de lo natural.",
+      "stats": {
+        "max_health": 35,
+        "attack": 10,
+        "defense": 3,
+        "speed": 70
+      },
+      "horror_level": 2,
+      "behavior": "patrol_chase",
+      "drops": [
+        {"item_id": "health_potion", "chance": 0.2}
+      ],
+      "experience": 25
+    },
+    {
+      "id": "tentacle_spawn",
+      "name": "Engendro Tentacular",
+      "description": "Una masa de tentáculos que no debería existir.",
+      "stats": {
+        "max_health": 50,
+        "attack": 8,
+        "defense": 5,
+        "speed": 30
+      },
+      "horror_level": 3,
+      "behavior": "ambush",
+      "drops": [
+        {"item_id": "sanity_tonic", "chance": 0.15}
+      ],
+      "experience": 40
+    },
+    {
+      "id": "whispering_shade",
+      "name": "Sombra Susurrante",
+      "description": "Una figura etérea que murmura secretos que erosionan la mente.",
+      "stats": {
+        "max_health": 20,
+        "attack": 5,
+        "defense": 1,
+        "speed": 60
+      },
+      "horror_level": 4,
+      "behavior": "float_approach",
+      "special": "sanity_drain_aura",
+      "drops": [
+        {"item_id": "forbidden_tome", "chance": 0.05}
+      ],
+      "experience": 35
+    },
+    {
+      "id": "deep_dweller",
+      "name": "Morador de las Profundidades",
+      "description": "Una criatura anfíbia con rasgos perturbadoramente humanoides.",
+      "stats": {
+        "max_health": 80,
+        "attack": 15,
+        "defense": 8,
+        "speed": 40
+      },
+      "horror_level": 5,
+      "behavior": "aggressive",
+      "drops": [
+        {"item_id": "eldritch_dagger", "chance": 0.08},
+        {"item_id": "silver_key", "chance": 0.02}
+      ],
+      "experience": 100
+    }
+  ]
+}
