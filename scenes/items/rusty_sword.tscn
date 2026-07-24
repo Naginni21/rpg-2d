@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://rusty_sword"]
+
+[ext_resource type="Script" path="res://scripts/items/collectible.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/Pixel Crawler - Free Pack/Environment/Props/Static/Tools.png" id="2_tools"]
+[ext_resource type="Texture2D" uid="uid://light_gradient" path="res://resources/light_gradient.tres" id="3_light"]
+[ext_resource type="Resource" uid="uid://rusty_sword_res" path="res://resources/weapons/rusty_sword.tres" id="4_weapon"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("2_tools")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 8.0
+
+[node name="RustySword" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_script")
+item_type = 4
+value = 0
+item_name = "Rusty Sword"
+weapon_resource = ExtResource("4_weapon")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = SubResource("AtlasTexture_1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.8, 0.4, 1)
+energy = 0.8
+texture = ExtResource("3_light")
+texture_scale = 0.5

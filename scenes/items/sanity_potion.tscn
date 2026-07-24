@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://sanity_potion"]
+
+[ext_resource type="Script" path="res://scripts/items/collectible.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/Pixel Crawler - Free Pack/Environment/Props/Static/Resources.png" id="2_resources"]
+[ext_resource type="Texture2D" uid="uid://light_gradient" path="res://resources/light_gradient.tres" id="3_light"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1"]
+atlas = ExtResource("2_resources")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 6.0
+
+[node name="SanityPotion" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_script")
+item_type = 1
+value = 20
+item_name = "Mind Crystal"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = SubResource("AtlasTexture_1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.7, 0.5, 1, 1)
+energy = 1.0
+texture = ExtResource("3_light")
+texture_scale = 0.6

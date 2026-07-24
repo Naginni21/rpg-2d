@@ -1,19 +1,107 @@
-[gd_scene load_steps=3 format=3 uid="uid://main001"]
+[gd_scene load_steps=14 format=3 uid="uid://main001"]
 
 [ext_resource type="PackedScene" uid="uid://player001" path="res://scenes/player/player.tscn" id="1_player"]
 [ext_resource type="Script" path="res://scripts/systems/main.gd" id="2_main"]
+[ext_resource type="TileSet" uid="uid://dungeon_tileset" path="res://resources/dungeon_tileset.tres" id="3_tileset"]
+[ext_resource type="PackedScene" uid="uid://skeleton001" path="res://scenes/enemies/skeleton.tscn" id="4_skeleton"]
+[ext_resource type="PackedScene" uid="uid://health_potion" path="res://scenes/items/health_potion.tscn" id="5_health"]
+[ext_resource type="PackedScene" uid="uid://sanity_potion" path="res://scenes/items/sanity_potion.tscn" id="6_sanity"]
+[ext_resource type="PackedScene" uid="uid://rusty_sword" path="res://scenes/items/rusty_sword.tscn" id="7_sword"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_1"]
+
+[sub_resource type="StyleBoxFlat" id="HealthBar_bg"]
+bg_color = Color(0.1, 0.08, 0.12, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.15, 0.15, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="HealthBar_fill"]
+bg_color = Color(0.8, 0.2, 0.2, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="StyleBoxFlat" id="SanityBar_bg"]
+bg_color = Color(0.1, 0.08, 0.12, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.2, 0.4, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="SanityBar_fill"]
+bg_color = Color(0.4, 0.3, 0.8, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="ParticleProcessMaterial" id="DustParticleMaterial"]
+emission_shape = 3
+emission_box_extents = Vector3(160, 90, 0)
+direction = Vector3(0.3, -0.1, 0)
+spread = 30.0
+initial_velocity_min = 2.0
+initial_velocity_max = 8.0
+gravity = Vector3(0, -2, 0)
+scale_min = 0.5
+scale_max = 1.5
+color = Color(0.6, 0.55, 0.5, 0.15)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("2_main")
 
 [node name="World" type="Node2D" parent="."]
 
-[node name="TileMap" type="TileMapLayer" parent="World"]
+[node name="Floor" type="TileMapLayer" parent="World"]
+tile_set = ExtResource("3_tileset")
+
+[node name="Walls" type="TileMapLayer" parent="World"]
+y_sort_enabled = true
+tile_set = ExtResource("3_tileset")
+tile_map_data = PackedByteArray()
+
+[node name="Props" type="Node2D" parent="World"]
+y_sort_enabled = true
+
+[node name="HealthPotion1" parent="World/Props" instance=ExtResource("5_health")]
+position = Vector2(48, 48)
+
+[node name="HealthPotion2" parent="World/Props" instance=ExtResource("5_health")]
+position = Vector2(272, 80)
+
+[node name="SanityPotion1" parent="World/Props" instance=ExtResource("6_sanity")]
+position = Vector2(160, 32)
+
+[node name="RustySword" parent="World/Props" instance=ExtResource("7_sword")]
+position = Vector2(100, 100)
+
+[node name="Darkness" type="CanvasModulate" parent="World"]
+color = Color(0.15, 0.1, 0.2, 1)
 
 [node name="Entities" type="Node2D" parent="World"]
+y_sort_enabled = true
 
 [node name="Player" parent="World/Entities" instance=ExtResource("1_player")]
-position = Vector2(160, 90)
+position = Vector2(160, 96)
+
+[node name="Skeleton1" parent="World/Entities" instance=ExtResource("4_skeleton")]
+position = Vector2(64, 64)
+
+[node name="Skeleton2" parent="World/Entities" instance=ExtResource("4_skeleton")]
+position = Vector2(256, 128)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -35,6 +123,8 @@ offset_top = 10.0
 offset_right = -10.0
 offset_bottom = 25.0
 grow_horizontal = 0
+theme_override_styles/background = SubResource("SanityBar_bg")
+theme_override_styles/fill = SubResource("SanityBar_fill")
 value = 100.0
 show_percentage = false
 
@@ -56,6 +146,8 @@ offset_left = 10.0
 offset_top = 10.0
 offset_right = 110.0
 offset_bottom = 25.0
+theme_override_styles/background = SubResource("HealthBar_bg")
+theme_override_styles/fill = SubResource("HealthBar_fill")
 value = 100.0
 show_percentage = false
 
@@ -69,6 +161,27 @@ grow_vertical = 2
 text = "HEALTH"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="WeaponLabel" type="Label" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -25.0
+offset_right = 150.0
+offset_bottom = -5.0
+grow_vertical = 0
+text = "Weapon: Fists"
+horizontal_alignment = 0
+vertical_alignment = 1
+
+[node name="AmbientDust" type="GPUParticles2D" parent="CanvasLayer"]
+amount = 30
+process_material = SubResource("DustParticleMaterial")
+lifetime = 6.0
+visibility_rect = Rect2(0, 0, 320, 180)
+local_coords = false
 
 [node name="SanityEffect" type="ColorRect" parent="CanvasLayer"]
 visible = false
